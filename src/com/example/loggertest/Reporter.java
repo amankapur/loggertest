@@ -42,7 +42,7 @@ public class Reporter {
 
     }
 
-    public void End () {
+    public void End (String actualData) {
         end_time = System.currentTimeMillis();
         end_packets_download = TrafficStats.getUidRxPackets(uid);
         end_bytes_upload = TrafficStats.getUidTxBytes(uid);
@@ -58,6 +58,7 @@ public class Reporter {
         data.put("bytes_upload", end_bytes_upload - start_bytes_upload);
         data.put("duration", end_time - start_time);
         data.put("title", title);
+        data.put("actual_data", actualData);
         logger.save(data);
 
     }
