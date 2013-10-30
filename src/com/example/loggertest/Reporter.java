@@ -33,10 +33,8 @@ public class Reporter {
 
     public void Start () {
         uid = android.os.Process.myUid();
-        start_packets_download = TrafficStats.getUidRxPackets(uid);
         start_bytes_upload = TrafficStats.getUidTxBytes(uid);
         start_bytes_download = TrafficStats.getUidRxBytes(uid);
-        start_packets_upload = TrafficStats.getUidTxPackets(uid);
         start_time = System.currentTimeMillis();
 
 
@@ -44,10 +42,9 @@ public class Reporter {
 
     public void End (String actualData) {
         end_time = System.currentTimeMillis();
-        end_packets_download = TrafficStats.getUidRxPackets(uid);
         end_bytes_upload = TrafficStats.getUidTxBytes(uid);
         end_bytes_download = TrafficStats.getUidRxBytes(uid);
-        end_packets_upload = TrafficStats.getUidTxPackets(uid);
+
         Logger logger = new Logger();
         Hashtable<String, Object> data = new Hashtable<String, Object>();
         data.put("end_time", end_time);
