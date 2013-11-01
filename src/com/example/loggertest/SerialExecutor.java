@@ -1,7 +1,5 @@
 package com.example.loggertest;
 
-import android.os.AsyncTask;
-
 import java.util.LinkedList;
 
 /**
@@ -18,11 +16,12 @@ public class SerialExecutor {
         queue = new LinkedList<MyTaskParams>();
     }
 
-    public void queue(AsyncTask task, MyTaskParams params) {
+    public void queue(MyTaskParams params) {
+        params.setQueue(queue);
         queue.add(params);
     }
 
-    public void run(){
+    public void run() {
         if (queue.size() > 0){
             new DownloadFilesTask().execute(queue.pop());
         }

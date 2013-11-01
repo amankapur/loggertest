@@ -14,9 +14,11 @@ public class MyTaskParams {
     String actualData;
     LinkedList<MyTaskParams> queue;
 
-    MyTaskParams(String url, String actualData, LinkedList<MyTaskParams> queue) {
+    MyTaskParams(String url, String actualData) {
         this.url = url;
         this.actualData = actualData;
+    }
+    public void setQueue(LinkedList<MyTaskParams> queue){
         this.queue = queue;
     }
 }

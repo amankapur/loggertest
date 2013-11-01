@@ -7,8 +7,6 @@ import android.util.Log;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 
-import java.util.LinkedList;
-
 public class MainActivity extends Activity {
 
     public Bitmap img;
@@ -38,12 +36,12 @@ public class MainActivity extends Activity {
 
         Log.i("uuid", "apples are awesome");
 
-        LinkedList<MyTaskParams> q = new LinkedList<MyTaskParams>();
-        q.add( new MyTaskParams(urls[0], actualData[0], q) );
-        q.add( new MyTaskParams(urls[1], actualData[1], q) );
-        q.add( new MyTaskParams(urls[2], actualData[2], q) );
+        SerialExecutor serialExecutor = new SerialExecutor();
+        serialExecutor.queue( new MyTaskParams(urls[0], actualData[0]) );
+        serialExecutor.queue( new MyTaskParams(urls[1], actualData[1]) );
+        serialExecutor.queue( new MyTaskParams(urls[2], actualData[2]) );
+        serialExecutor.run();
 
-        new DownloadFilesTask().execute(q.pop());
     }
 
 
