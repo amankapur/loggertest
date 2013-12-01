@@ -2,6 +2,7 @@ package com.example.loggertest;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import com.parse.Parse;
@@ -36,11 +37,12 @@ public class MainActivity extends Activity {
 
         Log.i("uuid", "apples are awesome");
 
-        SerialExecutor serialExecutor = new SerialExecutor();
-        serialExecutor.queue( new MyTaskParams(urls[0], actualData[0]) );
-        serialExecutor.queue( new MyTaskParams(urls[1], actualData[1]) );
-        serialExecutor.queue( new MyTaskParams(urls[2], actualData[2]) );
-        serialExecutor.run();
+
+        for(int i =0; i< 3; i++){
+            MyTaskParams params = new MyTaskParams(urls[i], actualData[i]);
+            DownloadFilesTask task = new DownloadFilesTask();
+            task.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, params);
+        }
 
     }
 
